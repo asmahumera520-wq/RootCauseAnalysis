@@ -65,7 +65,7 @@ rca-drafter/
 6. Click "Generate RCA Report"
 
 ## 👥 Team
-Built by a 4-member team for a hackathon/POC.
+Built by a 4-member team.
 
 ## 🔒 Security Note
 Never commit your `.env` file. The `.gitignore` already protects it.
