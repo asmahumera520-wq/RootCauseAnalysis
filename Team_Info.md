@@ -15,4 +15,4 @@ College:
 Ashoka Women's Engineering College
 
 GitHub Repository:
-RCA-DRAFTER-RootCauseAnalysis
+RootCauseAnalysis
