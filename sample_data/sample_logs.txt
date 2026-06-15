@@ -1,0 +1,38 @@
+2024-06-13 02:15:01 ERROR PaymentService - Connection timeout after 3000ms to payment-gateway.internal:8443
+2024-06-13 02:15:01 ERROR PaymentService - Failed to connect to payment-gateway.internal:8443
+2024-06-13 02:15:02 FATAL PaymentService - Max retries (3) exceeded for transaction ID: TXN-89234
+java.net.SocketTimeoutException: Read timed out
+    at sun.net.www.protocol.https.HttpsClient.afterConnect(HttpsClient.java:559)
+    at com.payments.gateway.HttpClient.sendRequest(HttpClient.java:234)
+    at com.payments.PaymentProcessor.processPayment(PaymentProcessor.java:118)
+    at com.payments.api.PaymentController.handleRequest(PaymentController.java:67)
+2024-06-13 02:15:02 ERROR OrderService - Payment validation failed for order ORD-45621
+2024-06-13 02:15:03 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:15:03 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:15:04 FATAL PaymentService - Max retries exceeded TXN-89235
+2024-06-13 02:15:04 ERROR CheckoutService - Unable to complete checkout for user USR-12093
+2024-06-13 02:15:05 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:15:06 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:15:08 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:15:10 WARN  MonitoringService - Payment success rate dropped below 5%
+2024-06-13 02:15:10 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:15:12 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:15:14 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:15:16 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:15:18 FATAL PaymentService - Max retries exceeded TXN-89240
+2024-06-13 02:15:20 ERROR OrderService - Payment validation failed for order ORD-45628
+2024-06-13 02:15:22 ERROR CheckoutService - Unable to complete checkout for user USR-12101
+2024-06-13 02:16:00 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:16:00 ERROR PaymentService - Connection timeout after 3000ms
+2024-06-13 02:16:01 FATAL PaymentService - Max retries exceeded TXN-89250
+2024-06-13 02:30:01 INFO  DeploymentManager - Detected: payment-service v2.3.1 deployed at 01:50:00
+2024-06-13 02:35:00 INFO  SRETeam - Root cause identified: gateway.timeout.ms changed from 30000 to 3000
+2024-06-13 02:40:00 INFO  SRETeam - Hotfix prepared: reverting gateway.timeout.ms to 30000
+2024-06-13 02:47:00 INFO  DeploymentManager - Hotfix v2.3.2 deploying to production
+2024-06-13 02:47:30 INFO  PaymentService - Configuration reloaded. Timeout: 30000ms
+2024-06-13 02:47:45 INFO  PaymentService - Successfully processed payment TXN-89301
+2024-06-13 02:48:00 INFO  PaymentService - Successfully processed payment TXN-89302
+2024-06-13 02:49:00 WARN  MonitoringService - Payment success rate recovering: 45%
+2024-06-13 02:50:00 INFO  MonitoringService - Payment success rate: 98%
+2024-06-13 02:50:00 INFO  PaymentService - Health check PASSING
+2024-06-13 03:00:00 INFO  SRETeam - Full recovery confirmed. Incident resolved.

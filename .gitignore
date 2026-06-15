@@ -1,0 +1,13 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.db
+*.sqlite3
+*.log
+/All_resumes.zip
+backend/uploads/*
+!backend/uploads/.keep
+chroma_db/

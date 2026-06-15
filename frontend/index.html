@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RCA Drafter — Submit Incident</title>
+  <meta name="description" content="AI-powered Post-Incident Root Cause Analysis generator. Submit your incident data and get a professional RCA report in seconds." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="/">
+      <div class="logo-icon">🚨</div>
+      <span>RCA Drafter</span>
+    </a>
+    <div class="navbar-links">
+      <a href="/"        class="nav-link active">New Incident</a>
+      <a href="/history" class="nav-link">History</a>
+    </div>
+  </nav>
+
+  <!-- ── Hero ───────────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-badge">⚡ AI-Powered</div>
+    <h1>Turn Incidents into<br><span class="highlight">Insights in Seconds</span></h1>
+    <p>Paste your timeline, upload your logs and git diff — our AI writes the complete RCA report for you.</p>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-value">2 hrs</div><div class="stat-label">Time saved per incident</div></div>
+      <div class="stat"><div class="stat-value">30s</div><div class="stat-label">Average generation time</div></div>
+      <div class="stat"><div class="stat-value">100%</div><div class="stat-label">Structured output</div></div>
+    </div>
+  </section>
+
+  <!-- ── Main Form ──────────────────────────────────────────────────────── -->
+  <main class="main-content">
+    <form id="incidentForm" novalidate>
+
+      <!-- Step 1: Basic Info -->
+      <div class="card fade-in">
+        <div class="card-header">
+          <div class="step-num">1</div>
+          <div>
+            <h2>Incident Details</h2>
+            <p>Basic information about the incident</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="title">Incident Title <span class="required">*</span></label>
+          <input type="text" id="title" name="title"
+            placeholder="e.g., Payment API – Complete Service Outage"
+            required maxlength="200" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="severity">Severity <span class="required">*</span></label>
+            <select id="severity" name="severity" required>
+              <option value="P1">🔴 P1 — Critical (Revenue Impact)</option>
+              <option value="P2" selected>🟠 P2 — High (Major Feature Down)</option>
+              <option value="P3">🟢 P3 — Medium (Partial Impact)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="incident_date">Incident Date &amp; Time</label>
+            <input type="datetime-local" id="incident_date" name="incident_date" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="affected_systems">Affected Systems / Services</label>
+          <input type="text" id="affected_systems" name="affected_systems"
+            placeholder="e.g., Payment Service, Order Service, Checkout Flow" />
+        </div>
+      </div>
+
+      <!-- Step 2: Timeline -->
+      <div class="card fade-in">
+        <div class="card-header">
+          <div class="step-num">2</div>
+          <div>
+            <h2>Incident Timeline <span class="required">*</span></h2>
+            <p>Write what happened and when — one event per line</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="timeline">Timeline</label>
+          <textarea id="timeline" name="timeline" rows="8" required
+            placeholder="02:15 – PagerDuty alert: Payment API health check failing&#10;02:18 – On-call engineer acknowledged the alert&#10;02:22 – Confirmed 100% error rate on payment endpoint&#10;02:35 – Root cause found: timeout config changed in last deploy&#10;02:47 – Hotfix deployed&#10;03:00 – Full recovery confirmed"></textarea>
+        </div>
+      </div>
+
+      <!-- Step 3: File Uploads -->
+      <div class="card fade-in">
+        <div class="card-header">
+          <div class="step-num">3</div>
+          <div>
+            <h2>Upload Evidence</h2>
+            <p>Optional — greatly improves RCA quality</p>
+          </div>
+        </div>
+
+        <div class="upload-grid">
+          <div class="upload-box" id="logUploadBox">
+            <input type="file" id="log_file" name="log_file" accept=".txt,.log" />
+            <div class="upload-icon">📋</div>
+            <div class="upload-label">Error Logs</div>
+            <div class="upload-hint">.txt or .log file</div>
+            <div class="upload-filename" id="logFileName"></div>
+          </div>
+
+          <div class="upload-box" id="diffUploadBox">
+            <input type="file" id="diff_file" name="diff_file" accept=".diff,.patch,.txt" />
+            <div class="upload-icon">📝</div>
+            <div class="upload-label">Git Diff / Patch</div>
+            <div class="upload-hint">.diff or .patch file</div>
+            <div class="upload-filename" id="diffFileName"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn-generate" id="generateBtn">
+        ⚡ Generate RCA Report
+      </button>
+
+    </form>
+  </main>
+
+  <!-- ── Loading Overlay ────────────────────────────────────────────────── -->
+  <div id="loadingOverlay">
+    <div class="spinner"></div>
+    <div class="loading-title">AI is Writing Your RCA...</div>
+    <div class="loading-steps">
+      <div class="loading-step active" id="step1"><div class="dot"></div> Parsing error logs</div>
+      <div class="loading-step"        id="step2"><div class="dot"></div> Analysing git diff</div>
+      <div class="loading-step"        id="step3"><div class="dot"></div> Building AI prompt</div>
+      <div class="loading-step"        id="step4"><div class="dot"></div> Calling Groq API</div>
+      <div class="loading-step"        id="step5"><div class="dot"></div> Structuring RCA report</div>
+    </div>
+  </div>
+
+  <!-- ── Toast container ────────────────────────────────────────────────── -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/form.js"></script>
+</body>
+</html>

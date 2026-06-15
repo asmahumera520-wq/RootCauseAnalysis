@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RCA Report — RCA Drafter</title>
+  <meta name="description" content="AI-generated Root Cause Analysis report for your production incident." />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- marked.js converts markdown to HTML -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="/">
+      <div class="logo-icon">🚨</div>
+      <span>RCA Drafter</span>
+    </a>
+    <div class="navbar-links">
+      <a href="/"        class="nav-link">New Incident</a>
+      <a href="/history" class="nav-link">History</a>
+    </div>
+  </nav>
+
+  <!-- ── Report Page ────────────────────────────────────────────────────── -->
+  <main class="report-page">
+
+    <!-- Top bar: title + actions -->
+    <div class="report-topbar">
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span class="badge badge-p1" id="severityBadge">P1</span>
+        <h1 id="reportTitle">Loading report…</h1>
+      </div>
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+        <button class="btn-secondary" onclick="printReport()">🖨️ Print / Save PDF</button>
+        <a href="/" class="btn-secondary">＋ New Incident</a>
+      </div>
+    </div>
+
+    <!-- Meta strip -->
+    <div class="report-meta" id="reportMeta" style="display:none;">
+      <div class="meta-item">
+        <span class="meta-label">Severity</span>
+        <span class="meta-value" id="metaSeverity">—</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Incident Date</span>
+        <span class="meta-value" id="metaDate">—</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Affected Systems</span>
+        <span class="meta-value" id="metaSystems">—</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Report Generated</span>
+        <span class="meta-value" id="metaGenerated">—</span>
+      </div>
+    </div>
+
+    <!-- RCA content -->
+    <div class="rca-body fade-in" id="rcaContent">
+      <div class="empty-state">
+        <div class="empty-icon">⏳</div>
+        <h3>Loading RCA Report…</h3>
+        <p>Fetching your incident data from the server.</p>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/report.js"></script>
+</body>
+</html>

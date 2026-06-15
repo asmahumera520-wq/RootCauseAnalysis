@@ -1,0 +1,29 @@
+diff --git a/payment-service/src/config/gateway.properties b/payment-service/src/config/gateway.properties
+index a3f8c21..b9d4e17 100644
+--- a/payment-service/src/config/gateway.properties
++++ b/payment-service/src/config/gateway.properties
+@@ -10,9 +10,9 @@
+ # Payment Gateway Configuration
+ # Last reviewed: 2024-05-01
+ gateway.url=https://payment-gateway.internal:8443
+-gateway.timeout.ms=30000
++gateway.timeout.ms=3000
+ gateway.retry.max=3
+ gateway.retry.delay.ms=1000
+ gateway.ssl.verify=true
+ gateway.pool.max=50
+diff --git a/payment-service/src/main/PaymentProcessor.java b/payment-service/src/main/PaymentProcessor.java
+index cc91d3f..7a1b204 100644
+--- a/payment-service/src/main/PaymentProcessor.java
++++ b/payment-service/src/main/PaymentProcessor.java
+@@ -44,8 +44,8 @@
+ public class PaymentProcessor {
+     private static final Logger log = LoggerFactory.getLogger(PaymentProcessor.class);
+ 
+-    // Timeout loaded from gateway.timeout.ms property
+-    private int timeoutMs = config.getInt("gateway.timeout.ms", 30000);
++    // Updated timeout for performance testing
++    private int timeoutMs = config.getInt("gateway.timeout.ms", 3000);
+ 
+     public PaymentResponse processPayment(PaymentRequest request) {
+         log.info("Processing payment for transaction: {}", request.getTransactionId());

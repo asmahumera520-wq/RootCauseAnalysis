@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Incident History — RCA Drafter</title>
+  <meta name="description" content="View all past incidents and their AI-generated RCA reports." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── Navbar ─────────────────────────────────────────────────────────── -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="/">
+      <div class="logo-icon">🚨</div>
+      <span>RCA Drafter</span>
+    </a>
+    <div class="navbar-links">
+      <a href="/"        class="nav-link">New Incident</a>
+      <a href="/history" class="nav-link active">History</a>
+    </div>
+  </nav>
+
+  <main class="main-content" style="padding-top:2rem;">
+
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <h1 style="font-size:1.6rem;font-weight:800;">Incident History</h1>
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-top:4px;">All past incidents and their RCA reports</p>
+      </div>
+      <a href="/" class="btn-secondary">＋ New Incident</a>
+    </div>
+
+    <div id="incidentList" class="history-grid">
+      <div class="empty-state">
+        <div class="empty-icon">⏳</div>
+        <h3>Loading…</h3>
+      </div>
+    </div>
+
+  </main>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/history.js"></script>
+</body>
+</html>
