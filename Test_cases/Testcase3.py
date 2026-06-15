@@ -1,6 +1,11 @@
-def test_invalid_incident_id():
+from app import app
+
+def test_generate_rca_missing_timeline():
     client = app.test_client()
 
-    response = client.get('/api/incidents/999999')
+    response = client.post('/api/generate-rca', data={
+        "title": "Payment API Outage",
+        "timeline": ""
+    })
 
-    assert response.status_code == 404
+    assert response.status_code == 400
