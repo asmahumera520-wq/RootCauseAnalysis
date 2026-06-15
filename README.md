@@ -69,3 +69,10 @@ Built by a 4-member team.
 
 ## 🔒 Security Note
 Never commit your `.env` file. The `.gitignore` already protects it.
+
+Watch Demo video:
+https://www.loom.com/share/75f737fcf1984aa39259efa1ff594434
+
+
+Sample Data:
+
