@@ -77,3 +77,6 @@ https://www.loom.com/share/75f737fcf1984aa39259efa1ff594434
 Sample Data:
 https://github.com/asmahumera520-wq/RootCauseAnalysis/tree/main/sample_data
 
+Sample Testcases:
+https://github.com/asmahumera520-wq/RootCauseAnalysis/tree/main/Test_cases
+
